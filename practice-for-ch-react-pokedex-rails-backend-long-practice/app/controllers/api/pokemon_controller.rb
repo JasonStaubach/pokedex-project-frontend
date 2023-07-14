@@ -34,7 +34,6 @@ class Api::PokemonController < ApplicationController
 
   def update
     @pokemon = Pokemon.find(params[:id])
-
     @pokemon.transaction do
       @pokemon.update!(pokemon_params)
       @pokemon.save_moves!(params[:moves])

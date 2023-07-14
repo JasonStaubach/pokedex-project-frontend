@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { getItems } from '../store/items';
+import { updateItem } from '../store/items';
 
 const ItemForm = ({ itemId, hideForm }) => {
   let item = useSelector(state => state.items[itemId]);
@@ -14,6 +14,7 @@ const ItemForm = ({ itemId, hideForm }) => {
   const updateHappiness = (e) => setHappiness(e.target.value);
   const updatePrice = (e) => setPrice(e.target.value);
 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -24,7 +25,7 @@ const ItemForm = ({ itemId, hideForm }) => {
       price
     };
     
-    let returnedItem = await dispatch(getItems(payload));
+    let returnedItem = await dispatch(updateItem(payload));
     if (returnedItem) {
       hideForm();
     }

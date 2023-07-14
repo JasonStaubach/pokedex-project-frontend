@@ -21,7 +21,7 @@ const addOnePokemon = pokemon => ({
 
 export const createPokemon = pokemonKeys => async dispatch => {
   const res = await fetch('/api/pokemon', {
-    method: 'post',
+    method: 'POST',
     body: JSON.stringify(pokemonKeys),
     headers: {
       'Content-type': 'application/json',
@@ -45,7 +45,7 @@ export const getOnePokemon = id => async dispatch => {
 }
 export  const editOnePokemon = pokemon => async dispatch => {
   const res = await fetch(`/api/pokemon/${pokemon.id}`, {
-    method: 'put',
+    method: 'patch',
     body: JSON.stringify(pokemon),
     headers: {
       'Content-type': 'application/json',

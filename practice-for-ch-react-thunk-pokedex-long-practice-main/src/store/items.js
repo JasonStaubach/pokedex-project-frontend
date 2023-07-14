@@ -1,3 +1,5 @@
+import { useDispatch } from "react-redux";
+
 export const LOAD_ITEMS = "items/LOAD_ITEMS";
 export const UPDATE_ITEM = "items/UPDATE_ITEM";
 export const REMOVE_ITEM = "items/REMOVE_ITEM";
@@ -33,6 +35,22 @@ export const getItems = (id) => async (dispatch) => {
     dispatch(load(items, id))
   }
 
+}
+
+export const updateItem = (item) => async (dispatch) => {
+  const res = await fetch(`/api/items/${item.id}`, {
+    method: 'put',
+    body: JSON.stringify(item),
+    headers: {
+      'Content-Type': 'application/json',
+    }
+  })
+
+  if(res.ok){
+    const editItem = await res.json()
+    dispatch(update(editItem))
+    return editItem
+  }
 }
 
 const initialState = {};
